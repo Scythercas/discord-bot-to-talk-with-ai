@@ -1,12 +1,15 @@
 import axios from "axios";
 import { createRequire } from "module";
+import { Client, Events, GatewayIntentBits } from "discord.js";
+
 const require = createRequire(import.meta.url);
-const { Client, Events, GatewayIntentBits } = require("discord.js");
-// 変更してください
-const serverID = "サーバーIDを入力";
-const channelID = "チャンネルIDを入力";
-const discordToken = "ディスコードのトークンを入力";
-const ChatGPTAPIKey = "OpenAIのAPIキーを入力";
+require("dotenv").config({ debug: true });
+
+const discordToken = process.env.DISCORD_TOKEN;
+const openAIAPIKey = process.env.OPENAI_API_KEY;
+
+const serverID = "入力";
+const channelID = "入力";
 
 const client = new Client({
   intents: [
@@ -21,7 +24,7 @@ const client = new Client({
 async function requestChatAPI(text) {
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${ChatGPTAPIKey}`,
+    Authorization: `Bearer ${openAIAPIKey}`,
   };
 
   const messages = [
@@ -31,13 +34,13 @@ async function requestChatAPI(text) {
     },
     {
       role: "system",
-      content: "簡潔に回答してください。",
+      content: "あなたは楽観的なギャルです。ポジティブに言い換えてください。",
     },
   ];
 
   const payload = {
     model: "gpt-3.5-turbo",
-    max_tokens: 80, //文字数制限
+    max_tokens: 128, //文字数制限
     messages: messages,
   };
   const response = await axios.post(
