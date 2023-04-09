@@ -7,9 +7,8 @@ require("dotenv").config({ debug: true });
 
 const discordToken = process.env.DISCORD_TOKEN;
 const openAIAPIKey = process.env.OPENAI_API_KEY;
-
-const serverID = "入力";
-const channelID = "入力";
+const serverID = process.env.SERVER_ID;
+const channelID = process.env.CHANNEL_ID;
 
 const client = new Client({
   intents: [
