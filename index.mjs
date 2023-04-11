@@ -19,8 +19,17 @@ const client = new Client({
   ],
 });
 
+const roleSuffixes = ["。。。", "？？？", "♪♪♪", "！！！"];
+const roleSettings = [
+  `あなたは共感力の高い人です。与えられた意見に対して共感しつつ、話を発展させてください。`,
+  `あなたは博識です。質問に対して簡潔に回答してください。`,
+  `あなたは作詞家です。与えられた曲名に対して作詞してください。`,
+  `あなたは短期なおじさんです。与えられた意見に対して強い口調で返してください。`
+]
+
+
 // ChatGPT
-async function requestChatAPI(text) {
+async function requestChatAPI(text, index) {
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${openAIAPIKey}`,
@@ -33,7 +42,7 @@ async function requestChatAPI(text) {
     },
     {
       role: "system",
-      content: "あなたは楽観的なギャルです。ポジティブに言い換えてください。",
+      content: roleSettings[index],
     },
   ];
 
@@ -68,15 +77,14 @@ client.on(Events.guildMemberAdd, (member) => {
     .send(`${member.user}が参加しました！`);
 });
 
+
 client.on(Events.MessageCreate, async (message) => {
   if (message.author.bot) return; // Botには反応しないようにする
   if (message.guild.id !== serverID) return; // 指定のサーバー以外では動作しないようにする
-  if (
-    message.content.includes("？？？") ||
-    message.content.includes("。。。")
-  ) {
+  const isSpecificSuffixes = roleSuffixes.indexOf(message.content.slice(-3));
+  if (indexOf!==-1) {
     message.channel.send("えっとね・・・");
-    const ChatGPTsReply = await requestChatAPI(message.content);
+    const ChatGPTsReply = await requestChatAPI(message.content,indexOf);
     message.reply(`お待たせしました！
     ${ChatGPTsReply}`);
   }
