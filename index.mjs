@@ -26,7 +26,7 @@ async function requestChatAPI(text) {
     Authorization: `Bearer ${openAIAPIKey}`,
   };
 
-  const messages = [
+  const messagesSettings = [
     {
       role: "user",
       content: text,
@@ -40,7 +40,7 @@ async function requestChatAPI(text) {
   const payload = {
     model: "gpt-3.5-turbo",
     max_tokens: 128, //文字数制限
-    messages: messages,
+    messages: messagesSettings,
   };
   const response = await axios.post(
     "https://api.openai.com/v1/chat/completions",
