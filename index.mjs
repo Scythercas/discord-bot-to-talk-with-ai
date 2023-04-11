@@ -7,8 +7,8 @@ require("dotenv").config({ debug: true });
 
 const discordToken = process.env.DISCORD_TOKEN;
 const openAIAPIKey = process.env.OPENAI_API_KEY;
-const serverID = process.env.SERVER_ID;
-const channelID = process.env.CHANNEL_ID;
+// const serverID = process.env.SERVER_ID;
+// const channelID = process.env.CHANNEL_ID;
 
 const client = new Client({
   intents: [
@@ -86,17 +86,17 @@ client.once(Events.ClientReady, (c) => {
 
 // client.on("guildCreate", (guild) => {});
 
-client.on(Events.guildMemberAdd, (member) => {
-  // 指定のサーバー以外では動作しないようにする
-  if (member.guild.id !== serverID) return;
-  member.guild.channels.cache
-    .get(channelID)
-    .send(`${member.user}が参加しました！`);
-});
+// client.on(Events.guildMemberAdd, (member) => {
+//   指定のサーバー以外では動作しないようにする
+//   if (member.guild.id !== serverID) return;
+//   member.guild.channels.cache
+//     .get(channelID)
+//     .send(`${member.user}が参加しました！`);
+// });
 
 client.on(Events.MessageCreate, async (message) => {
   if (message.author.bot) return; // Botには反応しないようにする
-  if (message.guild.id !== serverID) return; // 指定のサーバー以外では動作しないようにする
+  // if (message.guild.id !== serverID) return; // 指定のサーバー以外では動作しないようにする
   const indexOfRoleSuffix = roleSuffixes.indexOf(message.content.slice(-3));
   if (indexOfRoleSuffix !== -1) {
     message.channel.send("えっとね・・・");

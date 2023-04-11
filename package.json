@@ -1,7 +1,7 @@
 {
   "name": "discord-bot-to-talk-with-ai",
   "version": "1.0.0",
-  "description": "",
+  "description": "![image](https://user-images.githubusercontent.com/111866216/230725005-b960010b-e3ca-4443-8264-e12418e1233f.png)",
   "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
