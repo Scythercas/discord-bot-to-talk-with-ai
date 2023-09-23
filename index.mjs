@@ -50,7 +50,7 @@ async function requestChatAPI(text, index) {
 
   const payload = {
     model: "gpt-3.5-turbo",
-    max_tokens: 256, //文字数制限
+    max_tokens: 512, //文字数制限
     messages: messagesSettings,
   };
   const response = await axios.post(
