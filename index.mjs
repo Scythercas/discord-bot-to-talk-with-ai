@@ -20,7 +20,7 @@ const client = new Client({
 });
 
 const roleSuffixes = ["。。。", "？？？", "♪♪♪", "！！！", "メンス"];
-const roleSuffixesButDeleteSuffixes = ["メンス"];
+const roleSuffixesToBeRemoved = ["メンス"];
 const roleSettings = [
   `あなたは博識です。適切に対応してください。`,
   `あなたは博識です。質問に対して簡潔に回答してください。`,
