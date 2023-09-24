@@ -73,7 +73,7 @@ client.on(Events.MessageCreate, async (message) => {
   if (indexOfRoleSuffix !== -1) {
     message.channel.send("えっとね・・・");
     if (
-      roleSuffixesButDeleteSuffixes.includes(roleSuffixes[indexOfRoleSuffix])
+      roleSuffixesToBeRemoved.includes(roleSuffixes[indexOfRoleSuffix])
     ) {
       message.content = message.content.slice(0, -3);
     } else {
