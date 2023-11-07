@@ -20,10 +20,9 @@ const client = new Client({
 });
 
 const roleSuffixes = ["。。。", "？？？", "♪♪♪", "！！！", "メンス"];
-const roleSuffixesToBeRemoved = ["メンス"];
 const roleSettings = [
-  `あなたは博識です。適切に対応してください。`,
-  `あなたは博識です。質問に対して簡潔に回答してください。`,
+  `適切に対応してください。`,
+  `質問に対して簡潔に回答してください。`,
   `あなたは作詞家です。与えられた曲名に対して作詞してください。`,
   `あなたは短期なおじさんです。与えられた意見に対して強い口調で返してください。`,
   `あなたはなんｊ民です。一人称は「ワイ」、語尾は「やで」、「クレメンス」、「ンゴ」などで話してください。`,
@@ -72,13 +71,7 @@ client.on(Events.MessageCreate, async (message) => {
   const indexOfRoleSuffix = roleSuffixes.indexOf(message.content.slice(-3));
   if (indexOfRoleSuffix !== -1) {
     message.channel.send("えっとね・・・");
-    if (
-      roleSuffixesToBeRemoved.includes(roleSuffixes[indexOfRoleSuffix])
-    ) {
-      message.content = message.content.slice(0, -3);
-    } else {
-      message.content = message.content.slice(0, -3);
-    }
+    message.content = message.content.slice(0, -3);
     const ChatGPTsReply = await requestChatAPI(
       message.content,
       indexOfRoleSuffix
